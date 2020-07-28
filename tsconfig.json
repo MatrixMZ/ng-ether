@@ -6,5 +6,18 @@
 */
 {
   "files": [],
-  "references": []
+  "references": [
+    {
+      "path": "./projects/ether/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/ether/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/client/tsconfig.app.json"
+    },
+    {
+      "path": "./projects/client/tsconfig.spec.json"
+    }
+]
 }
