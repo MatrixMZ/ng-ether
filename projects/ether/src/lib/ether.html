@@ -1,4 +1,17 @@
-<div @ether ether *ngIf="(alertMessage$ | async) as alertMessage" [ngStyle]="{background: alertMessage.color}">
-    <span class="closebtn" (click)="closeAlert()">&times;</span>
-    <strong>{{ alertMessage.title }}!</strong> {{ alertMessage.message }}
+<div id="ether-container">
+  <div *ngFor="let element of elements" @ether ether [ngStyle]="{background: element.color}">
+    <div class="ether-content">
+      <div class="ether-title">
+        {{ element.title }}
+      </div>
+      <div class="ether-description">
+        {{ element.message }}
+      </div>
+    </div>
+    <div class="ether-icon" (click)="close(element)">
+      &times;
+    </div>
+    <!-- <span class="closebtn" (click)="closeAlert()">&times;</span> -->
+    <!-- <strong>{{ element.title }}!</strong> {{ element.message }} -->
+  </div>
 </div>

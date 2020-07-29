@@ -30,25 +30,26 @@ export interface EtherData {
 })
 export class EtherService {
 
-  public alertMessage$ = new Subject<EtherData>();
+  public data$ = new Subject<EtherData>();
 
-  public launch(params: EtherData = { 
-    type: EtherType.Default,
-    title: 'Notification',
-    message: 'Blah, balh, balh!',
-    color: '#303030',
-    duration: 3000,
-    completion: () => {},
-    onConfirm: {
-      button: 'Okay',
-      action: () => {}
-    },
-    onCancel: {
-      button: 'Cancel',
-      action: () => {}
-    }
-  }): void {
-    this.alertMessage$.next(params);
+  public launch(custom?: EtherData): void {
+    const params: EtherData = {
+      type: EtherType.Default,
+      title: 'Notification',
+      message: 'Blah, balh, balh!',
+      color: '#303030',
+      duration: 3000,
+      completion: () => {},
+      onConfirm: {
+        button: 'Okay',
+        action: () => {}
+      },
+      onCancel: {
+        button: 'Cancel',
+        action: () => {}
+      }
+    };
+    this.data$.next({ ...params, ...custom });
   }
-  
+
 }
