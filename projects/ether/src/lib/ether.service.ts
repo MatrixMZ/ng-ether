@@ -1,20 +1,25 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 
-export enum EtherType {
-  Default,
-  Success,
-  Warning,
-  Error
+export interface EtherDefaults {
+  color: string;
+  title: string;
+}
+
+export class EtherType {
+  public static Default: EtherDefaults = { color: '#303030', title: 'Success' };
+  public static Success: EtherDefaults = { color: 'green', title: 'Success' };
+  public static Warning: EtherDefaults = { color: 'orange', title: 'Warning' };
+  public static Error: EtherDefaults = { color: 'Red', title: 'Error' };
 }
 
 export interface EtherAction {
   button: string;
-  action: () => void
+  action: () => void;
 }
 
 export interface EtherData {
-  type?: EtherType;
+  type?: EtherDefaults;
   title?: string;
   message?: string;
   color?: string;

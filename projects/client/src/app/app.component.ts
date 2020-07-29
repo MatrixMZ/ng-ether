@@ -12,7 +12,7 @@ export class AppComponent {
   }
 
   public dispatchMessage(): void {
-    this.ether.launch({title: '' + Math.random()});
+    this.ether.launch({title: 'Notification', message: 'Simple note.'});
   }
 
 }
