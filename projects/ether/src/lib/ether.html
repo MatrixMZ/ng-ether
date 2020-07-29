@@ -1,0 +1,4 @@
+<div @ether ether *ngIf="(alertMessage$ | async) as alertMessage" [ngStyle]="{background: alertMessage.color}">
+    <span class="closebtn" (click)="closeAlert()">&times;</span>
+    <strong>{{ alertMessage.title }}!</strong> {{ alertMessage.message }}
+</div>

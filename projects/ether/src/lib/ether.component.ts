@@ -1,16 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, Subject}  from 'rxjs';
 import { EtherData, EtherService } from './ether.service';
+import { trigger, style, animate, transition } from '@angular/animations';
+
 
 @Component({
   selector: 'ng-ether',
-  template: `
-    <div class="alert" *ngIf="(alertMessage$ | async) as alertMessage" [ngStyle]="{background: alertMessage.color}">
-      <span class="closebtn" (click)="closeAlert()">&times;</span>
-      <strong>{{ alertMessage.title }}!</strong> {{ alertMessage.message }}
-    </div>
-  `,
-  styles: [
+  templateUrl: './ether.html',
+  styleUrls: ['./ether.scss'],
+  animations: [
+    trigger('ether', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('1000ms', style({ opacity: 1 })),
+      ]),
+      transition(':leave', [
+        animate('1000ms', style({ opacity: 0 }))
+      ])
+    ]),
   ]
 })
 export class EtherComponent implements OnInit {
