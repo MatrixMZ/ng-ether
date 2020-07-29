@@ -8,22 +8,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-  constructor(private alertService: EtherService) {
+  constructor(private ether: EtherService) {
   }
 
-  public createSuccessMessage(): void {
-    this.alertService.createSuccessAlert('Sample success message');
+  public dispatchMessage(): void {
+    this.ether.launch({title: '' + Math.random()});
   }
 
-  public createDangerMessage(): void {
-    this.alertService.createDangerAlert('Sample danger message');
-  }
-
-  public createWarningMessage(): void {
-    this.alertService.createWarningAlert('Sample warning message');
-  }
-
-  public createInfoMessage(): void {
-    this.alertService.createInfoAlert('Sample info message');
-  }
 }
