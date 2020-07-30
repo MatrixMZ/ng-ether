@@ -39,18 +39,18 @@ export class EtherComponent implements OnInit {
       const event: EtherPresenter = {...eventData, display: true};
 
       this.events.push(event);
-      if (event.buttons.length) return;
+      if (event.buttons.length) { return; }
       setTimeout(() => event.display = false, event.duration);
     });
   }
 
-  resolveAction(event: EtherPresenter, action: Function = () => {}): void {
+  resolveAction(event: EtherPresenter, action: () => void = () => {}): void {
     action();
-    this.close(event)
+    this.close(event);
   }
 
   destroy(event: EtherPresenter): void {
-    if (event.display) return;
+    if (event.display) { return; }
     this.events = this.events.filter((element) => element !== event);
   }
 

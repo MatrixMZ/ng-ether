@@ -13,7 +13,6 @@
     position: relative;
     background-color: #303030;
     color: #ffffff;
-    padding: 20px;
     margin-bottom: 10px;
     border-radius: 5px;
     display: flex;
@@ -24,15 +23,16 @@
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
+      padding: 20px;
+      min-width: 300px;
 
       .ether-body {
         .ether-title {
           font-size: 17pt;
-  
         }
-  
+
         .ether-description {
-  
+          margin-top: 10px;
         }
       }
 
@@ -51,10 +51,18 @@
       flex-direction: row;
 
       .ether-button {
+        margin-top: -10px;
         text-align: center;
-        padding-top: 10px;
+        padding: 20px 0;
         flex: 1;
+        border-radius: 5px;
         cursor: pointer;
+        transition: all ease-out .2s;
+
+        &:hover {
+          background-color: gray;
+          color: white;
+        }
       }
     }
   }

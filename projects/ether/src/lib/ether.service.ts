@@ -13,6 +13,7 @@ export class EtherDefaults {
   public static Error: EtherStyle = { color: 'Red', title: 'Error' };
 }
 
+
 export interface EtherButton {
   label: string;
   action: () => void;
@@ -27,6 +28,7 @@ export interface EtherEvent {
   completion?: () => void;
   buttons?: EtherButton[];
 }
+
 
 @Injectable({
   providedIn: 'root'
