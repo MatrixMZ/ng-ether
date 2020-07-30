@@ -35,19 +35,26 @@ export class EtherComponent implements OnInit {
   ngOnInit(): void {
     this.incomingEvent$ = this.ether.event$;
 
-    this.incomingEvent$.subscribe((data) => {
-      const element: EtherPresenter = {...data, display: true};
-      setTimeout(() => element.display = false, element.duration);
-      this.events.push(element);
+    this.incomingEvent$.subscribe((eventData) => {
+      const event: EtherPresenter = {...eventData, display: true};
+
+      this.events.push(event);
+      if (event.buttons.length) return;
+      setTimeout(() => event.display = false, event.duration);
     });
   }
 
-  destroy(element: EtherPresenter): void {
-    if (element.display) return;
-    this.events = this.events.filter((item) => item !== element);
+  resolveAction(event: EtherPresenter, action: Function = () => {}): void {
+    action();
+    this.close(event)
   }
 
-  close(element: EtherEvent): void {
+  destroy(event: EtherPresenter): void {
+    if (event.display) return;
+    this.events = this.events.filter((element) => element !== event);
+  }
 
+  close(event: EtherPresenter): void {
+    event.display = false;
   }
 }

@@ -15,7 +15,7 @@
         </div>
       </div>
       <div class="ether-buttons">
-        <div class="ether-button" *ngFor="let button of event.buttons" (click)="button.action()">
+        <div class="ether-button" *ngFor="let button of event.buttons" (click)="resolveAction(event, button.action())">
           <strong>{{ button.label }}</strong>
         </div>
       </div>
