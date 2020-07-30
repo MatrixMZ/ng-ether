@@ -1,16 +1,16 @@
 <div id="ether-container">
 
-  <div *ngFor="let element of elements">
-    <div @ether ether [ngStyle]="{background: element.color}" *ngIf="element.display">
+  <div *ngFor="let event of events">
+    <div @ether ether (@ether.done)="destroy(event)" [ngStyle]="{background: event.color}" *ngIf="event.display">
       <div class="ether-content">
         <div class="ether-title">
-          {{ element.title }}
+          {{ event.title }}
         </div>
         <div class="ether-description">
-          {{ element.message }}
+          {{ event.message }}
         </div>
       </div>
-      <div class="ether-icon" (click)="close(element)">
+      <div class="ether-icon" (click)="close(event)">
         &times;
       </div>
     </div>

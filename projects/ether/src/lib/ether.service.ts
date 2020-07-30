@@ -1,60 +1,51 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 
-export interface EtherDefaults {
+export interface EtherStyle {
   color: string;
   title: string;
 }
 
-export class EtherType {
-  public static Default: EtherDefaults = { color: '#303030', title: 'Success' };
-  public static Success: EtherDefaults = { color: 'green', title: 'Success' };
-  public static Warning: EtherDefaults = { color: 'orange', title: 'Warning' };
-  public static Error: EtherDefaults = { color: 'Red', title: 'Error' };
+export class EtherDefaults {
+  public static Default: EtherStyle = { color: '#303030', title: 'Success' };
+  public static Success: EtherStyle = { color: 'green', title: 'Success' };
+  public static Warning: EtherStyle = { color: 'orange', title: 'Warning' };
+  public static Error: EtherStyle = { color: 'Red', title: 'Error' };
 }
 
-export interface EtherAction {
+export interface EtherButton {
   button: string;
   action: () => void;
 }
 
-export interface EtherData {
-  type?: EtherDefaults;
+export interface EtherEvent {
+  style?: EtherStyle;
   title?: string;
   message?: string;
   color?: string;
   duration?: number;
   completion?: () => void;
-  onConfirm?: EtherAction;
-  onCancel?: EtherAction;
+  buttons?: EtherButton[];
 }
-
 
 @Injectable({
   providedIn: 'root'
 })
 export class EtherService {
 
-  public data$ = new Subject<EtherData>();
+  public event$ = new Subject<EtherEvent>();
 
-  public launch(custom?: EtherData): void {
-    const params: EtherData = {
-      type: EtherType.Default,
+  public launch(custom?: EtherEvent): void {
+    const params: EtherEvent = {
+      style: EtherDefaults.Default,
       title: 'Notification',
       message: 'Blah, balh, balh!',
       color: '#303030',
       duration: 3000,
       completion: () => {},
-      onConfirm: {
-        button: 'Okay',
-        action: () => {}
-      },
-      onCancel: {
-        button: 'Cancel',
-        action: () => {}
-      }
+      buttons: []
     };
-    this.data$.next({ ...params, ...custom });
+    this.event$.next({ ...params, ...custom });
   }
 
 }

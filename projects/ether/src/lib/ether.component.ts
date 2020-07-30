@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, Subject} from 'rxjs';
-import { EtherData, EtherService } from './ether.service';
+import { EtherEvent, EtherService } from './ether.service';
 import { trigger, style, animate, transition } from '@angular/animations';
 
-export interface EtherPresenter extends EtherData {
+export interface EtherPresenter extends EtherEvent {
   display: boolean;
 }
 
@@ -15,34 +15,39 @@ export interface EtherPresenter extends EtherData {
     trigger('ether', [
       transition(':enter', [
         style({ opacity: 0 , right: '-200px'}),
-        animate('200ms ease-in', style({ opacity: 1, right: '0px' }))
+        animate('300ms ease-out', style({ opacity: 1, right: '0px' }))
       ]),
       transition(':leave', [
         style({ opacity: 1 , right: '0'}),
-        animate('400ms ease-out', style({ opacity: 0, right: '-200px' }))
+        animate('300ms ease-in', style({ opacity: 0, right: '-200px' }))
       ])
     ]),
   ]
 })
 export class EtherComponent implements OnInit {
 
-  elements: EtherPresenter[] = [];
-  incomingData$: Observable<EtherData>;
+  events: EtherPresenter[] = [];
+  incomingEvent$: Observable<EtherEvent>;
 
   constructor(private ether: EtherService) {
   }
 
   ngOnInit(): void {
-    this.incomingData$ = this.ether.data$;
+    this.incomingEvent$ = this.ether.event$;
 
-    this.incomingData$.subscribe((data) => {
+    this.incomingEvent$.subscribe((data) => {
       const element: EtherPresenter = {...data, display: true};
       setTimeout(() => element.display = false, element.duration);
-      this.elements.push(element);
+      this.events.push(element);
     });
   }
 
-  close(element: EtherData): void {
+  destroy(element: EtherPresenter): void {
+    if (element.display) return;
+    this.events = this.events.filter((item) => item !== element);
+  }
+
+  close(element: EtherEvent): void {
 
   }
 }
