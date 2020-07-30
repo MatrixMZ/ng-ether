@@ -14,7 +14,7 @@ export class EtherDefaults {
 }
 
 export interface EtherButton {
-  button: string;
+  label: string;
   action: () => void;
 }
 

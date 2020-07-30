@@ -12,7 +12,14 @@ export class AppComponent {
   }
 
   public dispatchMessage(): void {
-    this.ether.launch({title: 'Notification', message: 'Simple note.'});
+    this.ether.launch({
+      title: 'Notification',
+      message: 'Simple note.',
+      buttons: [
+        { label: 'Okay', action: () => {console.log('Action');} },
+        { label: 'Cancel', action: () => {console.log('Cancel');} }
+      ]
+    });
   }
 
 }

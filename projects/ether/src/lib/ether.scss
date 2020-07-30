@@ -17,28 +17,44 @@
     margin-bottom: 10px;
     border-radius: 5px;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
 
     .ether-content {
-      .ether-title {
-        font-size: 17pt;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
 
+      .ether-body {
+        .ether-title {
+          font-size: 17pt;
+  
+        }
+  
+        .ether-description {
+  
+        }
       }
 
-      .ether-description {
-
+      .ether-icon {
+        cursor: pointer;
+        border-left: 2px solid #ffffffa4;
+        padding-left: 20px;
+        font-size: 20pt;
+        color: #ffffff;
+        margin-left: 20px;
       }
     }
 
-    .ether-icon {
-      cursor: pointer;
-      border-left: 2px solid #ffffffa4;
-      padding-left: 20px;
-      font-size: 20pt;
-      color: #ffffff;
-      margin-left: 20px;
+    .ether-buttons {
+      display: flex;
+      flex-direction: row;
+
+      .ether-button {
+        text-align: center;
+        padding-top: 10px;
+        flex: 1; 
+      }
     }
   }
 }
