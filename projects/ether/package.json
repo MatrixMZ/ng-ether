@@ -1,6 +1,8 @@
 {
-  "name": "ng-ether",
+  "name": "@ziobrowsky/ether",
   "version": "0.0.1",
+  "author": "Mateusz Ziobrowski <matrix.ziobrowski@gmail.com>",
+  "license": "MIT",
   "peerDependencies": {
     "@angular/common": "^10.0.5",
     "@angular/core": "^10.0.5"

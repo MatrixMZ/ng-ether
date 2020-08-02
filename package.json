@@ -1,6 +1,8 @@
 {
-  "name": "ng-ether",
+  "name": "@ziobrowsky/ether",
   "version": "0.0.0",
+  "author": "Mateusz Ziobrowski <matrix.ziobrowski@gmail.com>",
+  "license": "MIT",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
