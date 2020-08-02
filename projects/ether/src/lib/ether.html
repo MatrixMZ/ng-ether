@@ -1,25 +1,13 @@
-<div id="ether-container">
+<div id="ether-notification-container">
   <div *ngFor="let event of events">
-    <div @ether ether (@ether.done)="destroy(event)" [ngStyle]="{background: event.color}" *ngIf="event.display">
-      <div class="ether-content">
-        <div class="ether-body">
-          <div class="ether-title">
-            {{ event.title }}
-          </div>
-          <div class="ether-description">
-            {{ event.message }}
-          </div>
+    <div @ether-notification ether-notification (@ether-notification.done)="destroy(event)" [ngStyle]="{background: event.color}" *ngIf="event.display">
+      <div class="ether-notification-content">
+        <div class="ether-notification-body">
+          <div class="ether-notification-title">{{ event.title }}</div>
+          <div class="ether-notification-description">{{ event.message }}</div>
         </div>
-        <div class="ether-icon" (click)="close(event)">
-          &times;
-        </div>
+        <div *ngIf="event.button" class="ether-notification-action-button" (click)="resolveAction(event, event.button.action())">{{ event.button.label }}</div>
       </div>
-      <div class="ether-buttons">
-        <div class="ether-button" *ngFor="let button of event.buttons" (click)="resolveAction(event, button.action())">
-          <strong>{{ button.label }}</strong>
-        </div>
-      </div>
-
     </div>
   </div>
 </div>

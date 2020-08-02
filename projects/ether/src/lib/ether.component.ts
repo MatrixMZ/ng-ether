@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, Subject} from 'rxjs';
+import { Observable } from 'rxjs';
 import { EtherEvent, EtherService } from './ether.service';
 import { trigger, style, animate, transition } from '@angular/animations';
 
@@ -8,11 +8,11 @@ export interface EtherPresenter extends EtherEvent {
 }
 
 @Component({
-  selector: 'ng-ether',
+  selector: 'ether-notification',
   templateUrl: './ether.html',
   styleUrls: ['./ether.scss'],
   animations: [
-    trigger('ether', [
+    trigger('ether-notification', [
       transition(':enter', [
         style({ opacity: 0 , right: '-200px'}),
         animate('300ms ease-out', style({ opacity: 1, right: '0px' }))
@@ -39,7 +39,7 @@ export class EtherComponent implements OnInit {
       const event: EtherPresenter = {...eventData, display: true};
 
       this.events.push(event);
-      if (event.buttons.length) { return; }
+      if (event.button) { return; }
       setTimeout(() => event.display = false, event.duration);
     });
   }

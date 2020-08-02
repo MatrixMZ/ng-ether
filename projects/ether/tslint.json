@@ -4,13 +4,13 @@
     "directive-selector": [
       true,
       "attribute",
-      "ng",
+      "ether",
       "camelCase"
     ],
     "component-selector": [
       true,
       "element",
-      "ng",
+      "ether",
       "kebab-case"
     ]
   }

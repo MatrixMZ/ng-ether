@@ -7,7 +7,7 @@
       "projectType": "library",
       "root": "projects/ether",
       "sourceRoot": "projects/ether/src",
-      "prefix": "ng",
+      "prefix": "ether",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",

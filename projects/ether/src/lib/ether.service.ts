@@ -13,10 +13,19 @@ export class EtherDefaults {
   public static Error: EtherStyle = { color: 'Red', title: 'Error' };
 }
 
+export class EtherDefaultButtons {
+  public static Close: EtherStyle = { color: '#303030', title: 'Success' };
+  public static Success: EtherStyle = { color: 'green', title: 'Success' };
+  public static Warning: EtherStyle = { color: 'orange', title: 'Warning' };
+  public static Error: EtherStyle = { color: 'Red', title: 'Error' };
+}
+
+
 
 export interface EtherButton {
-  label: string;
-  action: () => void;
+  label?: string;
+  color?: string;
+  action?: () => void;
 }
 
 export interface EtherEvent {
@@ -26,7 +35,7 @@ export interface EtherEvent {
   color?: string;
   duration?: number;
   completion?: () => void;
-  buttons?: EtherButton[];
+  button?: EtherButton;
 }
 
 
@@ -45,7 +54,7 @@ export class EtherService {
       color: '#303030',
       duration: 3000,
       completion: () => {},
-      buttons: []
+      button: { label: '&#x2715;', color: 'white', action: () => {} }
     };
     this.event$.next({ ...params, ...custom });
   }

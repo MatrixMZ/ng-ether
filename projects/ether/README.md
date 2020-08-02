@@ -8,5 +8,4 @@ Install package in your project:
 Add to app module dependecy:
 * import: `import { EtherModule } from '@ziobrowsky/ng-ether';`
 * inside modlue's `dependency` array add `EtherModule`
-
-Add `<ng-ether></ng-ether>` into your app.component.html file.
+* add `<ng-ether></ng-ether>` to your app.component.html file.
