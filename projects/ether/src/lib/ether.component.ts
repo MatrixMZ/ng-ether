@@ -1,12 +1,24 @@
+/**
+ * @author Mateusz Ziobrowski
+ */
+
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { EtherEvent, EtherService } from './ether.service';
+import { EtherNotification, EtherService } from './ether.service';
 import { trigger, style, animate, transition } from '@angular/animations';
 
-export interface EtherPresenter extends EtherEvent {
+/**
+ * Extends notification to be albe to be displayed in html.
+ * @extends {EtherNotification}
+ */
+export interface EtherNotificationPresenter extends EtherNotification {
   display: boolean;
 }
 
+/**
+ * Creates a active list of notification that are appearing on the screen.
+ * @implements {OnInit}
+ */
 @Component({
   selector: 'ether-notification',
   templateUrl: './ether.html',
@@ -26,35 +38,71 @@ export interface EtherPresenter extends EtherEvent {
 })
 export class EtherComponent implements OnInit {
 
-  events: EtherPresenter[] = [];
-  incomingEvent$: Observable<EtherEvent>;
+  events: EtherNotificationPresenter[] = [];
+  incomingNotification$: Observable<EtherNotification>;
 
+  /**
+   * Initializes ether notification service.
+   * @param {EtherService} ether
+   * @memberof EtherComponent
+   */
   constructor(private ether: EtherService) {
   }
 
+  /**
+   * Subscribes ether service's attribute to listen for new incoming notifications.
+   * If icoming notification does not include close button then sets closing timeout.
+   *
+   * @memberof EtherComponent
+   */
   ngOnInit(): void {
-    this.incomingEvent$ = this.ether.event$;
+    this.incomingNotification$ = this.ether.notification$;
 
-    this.incomingEvent$.subscribe((eventData) => {
-      const event: EtherPresenter = {...eventData, display: true};
+    this.incomingNotification$.subscribe((eventData) => {
+      const notification: EtherNotificationPresenter = {...eventData, display: true};
 
-      this.events.push(event);
-      if (event.button) { return; }
-      setTimeout(() => event.display = false, event.duration);
+      this.events.push(notification);
+      if (notification.button) { return; }
+      setTimeout(() => {
+        notification.completion();
+        notification.display = false;
+      }, notification.duration);
     });
   }
 
-  resolveAction(event: EtherPresenter, action: () => void = () => {}): void {
+  /**
+   * Executes action function that was declared for button and closes the notification after.
+   *
+   * @param {EtherNotificationPresenter} event
+   * @param {() => void} [action = () => {}]
+   * @returns {void}
+   * @memberof EtherComponent
+   */
+  resolveAction(event: EtherNotificationPresenter, action: () => void = () => {}): void {
     action();
     this.close(event);
   }
 
-  destroy(event: EtherPresenter): void {
+  /**
+   * Closes notification and clears up all disabled notifications after.
+   *
+   * @param {EtherNotificationPresenter} event
+   * @returns {void}
+   * @memberof EtherComponent
+   */
+  destroy(event: EtherNotificationPresenter): void {
     if (event.display) { return; }
     this.events = this.events.filter((element) => element !== event);
   }
 
-  close(event: EtherPresenter): void {
+  /**
+   * Closes provided notification.
+   *
+   * @param {EtherNotificationPresenter} event
+   * @returns {void}
+   * @memberof EtherComponent
+   */
+  close(event: EtherNotificationPresenter): void {
     event.display = false;
   }
 }

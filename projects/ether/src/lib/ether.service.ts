@@ -28,7 +28,7 @@ export interface EtherButton {
   action?: () => void;
 }
 
-export interface EtherEvent {
+export interface EtherNotification {
   style?: EtherStyle;
   title?: string;
   message?: string;
@@ -44,19 +44,19 @@ export interface EtherEvent {
 })
 export class EtherService {
 
-  public event$ = new Subject<EtherEvent>();
+  public notification$ = new Subject<EtherNotification>();
 
-  public launch(custom?: EtherEvent): void {
-    const params: EtherEvent = {
+  public launch(custom?: EtherNotification): void {
+    const params: EtherNotification = {
       style: EtherDefaults.Default,
       title: 'Notification',
-      message: 'Blah, balh, balh!',
+      message: 'Error with connecting to ethernet',
       color: '#303030',
       duration: 3000,
-      completion: () => {},
-      button: { label: '&#x2715;', color: 'white', action: () => {} }
+      completion: () => { console.log('completion'); },
+      // button: { label: '&#x2715;', color: 'white', action: () => { console.log('buttonClick'); } }
     };
-    this.event$.next({ ...params, ...custom });
+    this.notification$.next({ ...params, ...custom });
   }
 
 }

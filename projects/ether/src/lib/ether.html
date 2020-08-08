@@ -3,10 +3,10 @@
     <div @ether-notification ether-notification (@ether-notification.done)="destroy(event)" [ngStyle]="{background: event.color}" *ngIf="event.display">
       <div class="ether-notification-content">
         <div class="ether-notification-body">
-          <div class="ether-notification-title">{{ event.title }}</div>
-          <div class="ether-notification-description">{{ event.message }}</div>
+          <div class="ether-notification-title" [innerHTML]="event.title"></div>
+          <div *ngIf="event.message" class="ether-notification-description" [innerHTML]="event.message"></div>
         </div>
-        <div *ngIf="event.button" class="ether-notification-action-button" (click)="resolveAction(event, event.button.action())">{{ event.button.label }}</div>
+        <div *ngIf="event.button" class="ether-notification-action-button" (click)="resolveAction(event, event.button.action())" [innerHTML]="event.button.label"></div>
       </div>
     </div>
   </div>

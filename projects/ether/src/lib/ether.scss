@@ -35,31 +35,11 @@
         .ether-notification-description {
           margin-top: 10px;
         }
-
-        .ether-notification-buttons {
-          margin-bottom: -10px;
-          display: flex;
-          flex-direction: row;
-          justify-content: space-around;
-
-          .ether-notification-button {
-            text-align: center;
-            padding: 10px 20px;
-            border-radius: 5px;
-            transition: all ease-out .2s;
-
-            &:hover {
-              background-color: gray;
-              color: white;
-            }
-          }
-        }
       }
 
       .ether-notification-action-button {
-        margin-right: -10px;
-        margin-left: 10px;
-        padding: 20px;
+        margin-left: 30px;
+        margin-right: 10px;
         cursor: pointer;
       }
     }

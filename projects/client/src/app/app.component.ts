@@ -18,8 +18,8 @@ export class AppComponent implements AfterViewInit {
   public dispatchMessage(): void {
     this.ether.launch({
       title: 'Notification',
-      message: 'Simple note.',
-      button: { label: 'Cancel', action: () => console.log('Action!') }
+      // message: 'Simple note.',
+      // button: { label: 'Cancel', action: () => console.log('Action!') }
     });
   }
 
