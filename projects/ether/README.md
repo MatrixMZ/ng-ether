@@ -99,4 +99,7 @@ Of course you can aways specify your own color theme:
   });
 ```
 
-
+## Ideas | Issues | Development
+Feel free to report any issues or suggest some changes.
+You can also work on this package's repository:  
+[github.com/MatrixMZ/ng-ether](https://github.com/MatrixMZ/ng-ether/)
