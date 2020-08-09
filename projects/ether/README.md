@@ -105,4 +105,4 @@ You can also work on this package's repository:
 [github.com/MatrixMZ/ng-ether](https://github.com/MatrixMZ/ng-ether/)
 
 ## Licence
-Licence under the [MIT Licence](LICENSE)
+Licence under the [MIT Licence](https://github.com/MatrixMZ/ng-ether/blob/master/LICENSE)
