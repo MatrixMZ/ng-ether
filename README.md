@@ -15,3 +15,6 @@ If you want to test it, you can simply clone this repository, install dependenci
 
 ## Any Ideas or Issues?
 Feel free to report or suggest anything.
+
+## Licence
+Licence under the [MIT Licence](LICENSE)
