@@ -1,6 +1,6 @@
 {
   "name": "@ziobrowsky/ether",
-  "version": "1.0.7",
+  "version": "1.0.9",
   "author": "Mateusz Ziobrowski <matrix.ziobrowski@gmail.com>",
   "license": "MIT",
   "keywords": ["angular", "ether", "ziobrowsky", "ether-notification", "ng", "library", "notification", "popup", "message", "confirmation", "status", "flash", "notify", "toast", "toaster", "snackbar", "rxjs"],
