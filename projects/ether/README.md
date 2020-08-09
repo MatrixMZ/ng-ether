@@ -1,6 +1,6 @@
 # Ether
-Easy to use & customize - Angular notification feature.  
-You can find this library on this [GitHub](https://github.com/MatrixMZ/ng-ether-notification-library) repository.
+Easy to use & customize - **Angular Notificatios**.  
+You can find this Angular library on this [GitHub](https://github.com/MatrixMZ/ng-ether-notification-library) repository.
 
 ## Instalation
 Install package in your project:
