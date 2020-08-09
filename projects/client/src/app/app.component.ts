@@ -8,8 +8,7 @@ import { Component, AfterViewInit } from '@angular/core';
 })
 export class AppComponent implements AfterViewInit {
 
-  constructor(private ether: EtherService) {
-  }
+  constructor(private ether: EtherService) { }
 
   ngAfterViewInit(): void {
     this.dispatchMessage();
@@ -17,9 +16,7 @@ export class AppComponent implements AfterViewInit {
 
   public dispatchMessage(): void {
     this.ether.launch({
-      title: 'Notification',
-      // message: 'Simple note.',
-      // button: { label: 'Cancel', action: () => console.log('Action!') }
+      title: 'Notification'
     });
   }
 

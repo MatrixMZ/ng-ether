@@ -1,5 +1,5 @@
 /**
- * @author Mateusz Ziobrowski
+ * @author Mateusz Ziobrowski <matrix.ziobrowski@gmail.com>
  */
 
 import { Component, OnInit } from '@angular/core';
@@ -38,11 +38,12 @@ export interface EtherNotificationPresenter extends EtherNotification {
 })
 export class EtherComponent implements OnInit {
 
-  events: EtherNotificationPresenter[] = [];
+  notifications: EtherNotificationPresenter[] = [];
   incomingNotification$: Observable<EtherNotification>;
 
   /**
    * Initializes ether notification service.
+   *
    * @param {EtherService} ether
    * @memberof EtherComponent
    */
@@ -61,7 +62,7 @@ export class EtherComponent implements OnInit {
     this.incomingNotification$.subscribe((eventData) => {
       const notification: EtherNotificationPresenter = {...eventData, display: true};
 
-      this.events.push(notification);
+      this.notifications.push(notification);
       if (notification.button) { return; }
       setTimeout(() => {
         notification.completion();
@@ -73,36 +74,36 @@ export class EtherComponent implements OnInit {
   /**
    * Executes action function that was declared for button and closes the notification after.
    *
-   * @param {EtherNotificationPresenter} event
+   * @param {EtherNotificationPresenter} notification
    * @param {() => void} [action = () => {}]
    * @returns {void}
    * @memberof EtherComponent
    */
-  resolveAction(event: EtherNotificationPresenter, action: () => void = () => {}): void {
+  resolveAction(notification: EtherNotificationPresenter, action: () => void = () => {}): void {
     action();
-    this.close(event);
+    this.close(notification);
   }
 
   /**
    * Closes notification and clears up all disabled notifications after.
    *
-   * @param {EtherNotificationPresenter} event
+   * @param {EtherNotificationPresenter} element
    * @returns {void}
    * @memberof EtherComponent
    */
-  destroy(event: EtherNotificationPresenter): void {
-    if (event.display) { return; }
-    this.events = this.events.filter((element) => element !== event);
+  destroy(element: EtherNotificationPresenter): void {
+    if (element.display) { return; }
+    this.notifications = this.notifications.filter((notification) => notification !== element);
   }
 
   /**
    * Closes provided notification.
    *
-   * @param {EtherNotificationPresenter} event
+   * @param {EtherNotificationPresenter} notification
    * @returns {void}
    * @memberof EtherComponent
    */
-  close(event: EtherNotificationPresenter): void {
-    event.display = false;
+  close(notification: EtherNotificationPresenter): void {
+    notification.display = false;
   }
 }

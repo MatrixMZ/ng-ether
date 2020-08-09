@@ -1,44 +1,64 @@
+/**
+ * @author Mateusz Ziobrowski <matrix.ziobrowski@gmail.com>
+ */
+
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 
-export interface EtherStyle {
-  color: string;
-  title: string;
+/**
+ * Defines a color theme for ether element.
+ *
+ * @export
+ */
+export interface EtherTheme {
+  primary: string;
+  secondary?: string;
+  text: string;
 }
 
+/**
+ * Definies color scheme for ether elements.
+ *
+ * @export
+ */
 export class EtherDefaults {
-  public static Default: EtherStyle = { color: '#303030', title: 'Success' };
-  public static Success: EtherStyle = { color: 'green', title: 'Success' };
-  public static Warning: EtherStyle = { color: 'orange', title: 'Warning' };
-  public static Error: EtherStyle = { color: 'Red', title: 'Error' };
+  public static Default: EtherTheme = { primary: '#303030', text: '#ffffff'};
+  public static Success: EtherTheme = { primary: 'green', text: '#ffffff'};
+  public static Warning: EtherTheme = { primary: 'orange', text: '#ffffff'};
+  public static Error: EtherTheme = { primary: 'red', text: '#ffffff'};
 }
 
-export class EtherDefaultButtons {
-  public static Close: EtherStyle = { color: '#303030', title: 'Success' };
-  public static Success: EtherStyle = { color: 'green', title: 'Success' };
-  public static Warning: EtherStyle = { color: 'orange', title: 'Warning' };
-  public static Error: EtherStyle = { color: 'Red', title: 'Error' };
-}
-
-
-
+/**
+ * Defines ether button with its action funciton and label.
+ *
+ * @export
+ */
 export interface EtherButton {
   label?: string;
-  color?: string;
   action?: () => void;
 }
 
+/**
+ * Defines data templete for ether notification.
+ *
+ * @export
+ */
 export interface EtherNotification {
-  style?: EtherStyle;
   title?: string;
   message?: string;
-  color?: string;
+  theme?: EtherTheme;
   duration?: number;
   completion?: () => void;
   button?: EtherButton;
 }
 
-
+/**
+ * Service provides a connection with EtherComponent
+ * that displays notifications that are launched
+ * from this service.
+ *
+ * @export
+ */
 @Injectable({
   providedIn: 'root'
 })
@@ -46,17 +66,20 @@ export class EtherService {
 
   public notification$ = new Subject<EtherNotification>();
 
+  /**
+   * Creates new notification. With provided data that is optional.
+   *
+   * @param EtherNotification Custom notification data
+   */
   public launch(custom?: EtherNotification): void {
-    const params: EtherNotification = {
-      style: EtherDefaults.Default,
+    this.notification$.next({
       title: 'Notification',
-      message: 'Error with connecting to ethernet',
-      color: '#303030',
       duration: 3000,
-      completion: () => { console.log('completion'); },
-      // button: { label: '&#x2715;', color: 'white', action: () => { console.log('buttonClick'); } }
-    };
-    this.notification$.next({ ...params, ...custom });
+      theme: EtherDefaults.Default,
+      completion: () => {},
+      ...custom,
+      button: custom.button ? { label: '&#x2715;', action: () => {}, ...custom.button } : null
+    });
   }
 
 }
