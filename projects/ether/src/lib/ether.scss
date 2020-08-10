@@ -17,6 +17,7 @@
     border-radius: 5px;
     display: flex;
     flex-direction: column;
+    z-index: 1000;
 
     .ether-notification-content {
       padding: 20px;

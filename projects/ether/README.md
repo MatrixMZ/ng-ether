@@ -19,7 +19,11 @@ Register `EtherModule` in your `AppModule`.
   })
   export class AppModule { }
 ```
-Finally add the `<ng-ether></ng-ether>` tag to your `app.component.html` file.
+Finally add the 
+```
+  <ether-notification></ether-notification>
+``` 
+tag to your `app.component.html` file.
 
 ## How to use?
 To create a notification:
